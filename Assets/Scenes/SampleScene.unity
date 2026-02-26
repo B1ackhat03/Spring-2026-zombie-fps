@@ -275,6 +275,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch36_nonPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: bea258e5ce15a014e86823f467310d4e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 246c012f7aa72aa4e9b7a2c390306cb7, type: 2}
+    - target: {fileID: 5866666021909216657, guid: bea258e5ce15a014e86823f467310d4e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea258e5ce15a014e86823f467310d4e, type: 3}
 --- !u!1 &705507993
