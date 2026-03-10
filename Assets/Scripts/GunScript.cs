@@ -17,12 +17,13 @@ public class GunScript : MonoBehaviour
         }
     }
 
-  
+
     void Shoot()
     {
-        GameObject bullet = Instantiate(BulletModel, firePoint.position, 
-        firePoint.rotation);
+        // a -90 degree X rotation to correct the bullet orientation
+        Quaternion correctedRotation = firePoint.rotation * Quaternion.Euler(-90f, 0f, 0f);
 
+        GameObject bullet = Instantiate(BulletModel, firePoint.position, correctedRotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = firePoint.forward * bulletSpeed;
     }
