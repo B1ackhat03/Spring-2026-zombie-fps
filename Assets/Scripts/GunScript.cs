@@ -19,6 +19,14 @@ public class GunScript : MonoBehaviour
     // Tracks when we are allowed to shoot again
     private float nextShootTime = 0f;
 
+    // Lets the shoot Indicator know if we can shoot
+    public bool canShoot
+    {
+        get {
+            return Time.time >= nextShootTime;
+        }
+    }
+
     void Update()
     {
         // Left mouse button
