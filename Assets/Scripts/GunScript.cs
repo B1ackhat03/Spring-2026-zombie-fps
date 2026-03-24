@@ -11,6 +11,9 @@ public class GunScript : MonoBehaviour
     public float shootCooldown = 3f;
     // The visible laser beam
     public LineRenderer laserLine;
+    // SFX
+    private AudioSource gunAudioSource;
+    public AudioClip shootSound;
     // Tracks when we are allowed to shoot again
     private float nextShootTime = 0f;
     // Lets the shoot Indicator know if we can shoot
@@ -21,11 +24,18 @@ public class GunScript : MonoBehaviour
             return Time.time >= nextShootTime;
         }
     }
+    void Start()
+    {
+        gunAudioSource = gameObject.AddComponent<AudioSource>();
+        gunAudioSource.clip = shootSound;
+        gunAudioSource.PlayOneShot(shootSound); 
+        gunAudioSource.volume = 0f; 
+        gunAudioSource.volume = 1f; 
+    }
     void Update()
     {
         // Left mouse button (Fire1) OR Xbox One Right Trigger (Fire2)
         bool firePressed = Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire2") > 0.1f;
-
         if (firePressed)
         {
             // Check if cooldown is finished
@@ -39,6 +49,11 @@ public class GunScript : MonoBehaviour
     }
     void ShootRailGun()
     {
+        // Play shoot sound
+        if (gunAudioSource != null && shootSound != null)
+        {
+            gunAudioSource.PlayOneShot(shootSound);
+        }
         // This shoots a ray that detects EVERYTHING in a line
         RaycastHit[] hits = Physics.RaycastAll(firePoint.position, firePoint.forward, laserDistance);
         Vector3 endPoint = firePoint.position + firePoint.forward * laserDistance;
